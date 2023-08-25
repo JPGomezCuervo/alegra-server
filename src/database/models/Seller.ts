@@ -6,9 +6,11 @@ import { Table, Column, Model, DataType } from "sequelize-typescript";
 })
 export class Seller extends Model {
 	@Column({
-		primaryKey: true,
-		type: DataType.SMALLINT,
+        primaryKey: true,
+		type: DataType.INTEGER,
+        unique: true
 	})
+    id!: number;
 
 	@Column({
 		type: DataType.STRING(50),

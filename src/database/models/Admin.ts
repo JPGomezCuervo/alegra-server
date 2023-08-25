@@ -1,30 +1,32 @@
 import { Table, Column, Model, DataType } from "sequelize-typescript";
 
 @Table({
-	tableName: "admins",
-	timestamps: false,
+    tableName: "admins",
+    timestamps: false,
 })
-export class Admin extends Model {         
+export class Admin extends Model {
     @Column({
         primaryKey: true,
         type: DataType.SMALLINT,
+        autoIncrement: true
     })
-
-	@Column({
-		type: DataType.STRING,
-		allowNull: false,
-		unique: true,
-		validate: {
-			isEmail: {
-				msg: "Por favor ingresa un correo electrónico válido",
-			},
-		},
-	})
-	email!: string;
+    id!: number;
 
     @Column({
         type: DataType.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
+        validate: {
+            isEmail: {
+                msg: "Por favor ingresa un correo electrónico válido",
+            },
+        },
+    })
+    email!: string;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
     })
     password!: string;
 }

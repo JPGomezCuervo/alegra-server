@@ -1,4 +1,10 @@
-import { Table, Column, Model, DataType, ForeignKey } from "sequelize-typescript";
+import {
+	Table,
+	Column,
+	Model,
+	DataType,
+	ForeignKey,
+} from "sequelize-typescript";
 import { Seller } from "./Seller.js";
 import { Receipt } from "./Receipt.js";
 
@@ -6,21 +12,23 @@ import { Receipt } from "./Receipt.js";
 	tableName: "history",
 	timestamps: true,
 })
-export class History  extends Model {         
-    @Column({
+export class History extends Model {
+	@Column({
         primaryKey: true,
-        type: DataType.SMALLINT,
-    })
+		type: DataType.SMALLINT,
+        autoIncrement: true
+	})
+    id!: number;
 
-    @ForeignKey(()=> Seller)
-    @Column({
-        allowNull: false
-    })
-    sellerId!: number;
+	@ForeignKey(() => Seller)
+	@Column({
+		allowNull: false,
+	})
+	sellerId!: number;
 
-    @ForeignKey(()=> Receipt)
-    @Column({
-        allowNull: false
-    })
-    receiptId!: number;
+	@ForeignKey(() => Receipt)
+	@Column({
+		allowNull: false,
+	})
+	receiptId!: number;
 }
