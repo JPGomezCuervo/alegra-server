@@ -20,9 +20,6 @@ const server = express();
 const PORT = 5000;
 const HOST_NAME = "localhost";
 server.listen(PORT, async () => {
-    const { PGUSER, PGHOST, PGPASSWORD, PGPORT, PGDATABASE } = process.env;
-    console.log("Arranque");
-    console.log(PGUSER, PGHOST, PGPASSWORD, PGPORT, PGDATABASE);
     await sequelize.sync({ force: true });
     console.log(`Server listening to http://${HOST_NAME}:${PORT}`);
 });
