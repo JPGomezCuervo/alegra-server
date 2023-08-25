@@ -1,4 +1,8 @@
 import { Sequelize } from "sequelize-typescript";
+import { Seller } from "./models/seller.js";
+import dotenv from "dotenv";
+
+dotenv.config(); // dotenv
 
 const { PGUSER, PGHOST, PGPASSWORD, PGPORT, PGDATABASE } = process.env;
 
@@ -9,7 +13,7 @@ const sequelize = new Sequelize({
 	database: PGDATABASE,
 	username: PGUSER,
 	password: PGPASSWORD,
-	models: [],
+	models: [Seller],
 	native: false,
 	logging: false,
 });

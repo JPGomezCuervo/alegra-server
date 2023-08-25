@@ -1,6 +1,9 @@
 import express from "express";
 import morgan from "morgan";
+import dotenv from "dotenv";
 import sequelize from "./database/index_db.js";
+
+dotenv.config(); // dotenv
 
 // Morgan config
 morgan(function (tokens, req, res) {
