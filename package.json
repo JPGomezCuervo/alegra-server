@@ -9,7 +9,7 @@
     "format": "rome format .",
     "fix": "rome format . --write",
     "build": "tsc",
-    "start": "nodemon ./dist/index.js"
+    "start": "nodemon"
   },
   "keywords": [],
   "author": "",
