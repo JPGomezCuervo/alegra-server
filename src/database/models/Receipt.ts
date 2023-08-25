@@ -6,11 +6,11 @@ import { Table, Column, Model, DataType } from "sequelize-typescript";
 })
 export class Receipt extends Model {
 	@Column({
-        primaryKey: true,
+		primaryKey: true,
 		type: DataType.SMALLINT,
-        autoIncrement: true
+		autoIncrement: true,
 	})
-    id!: number;
+	id!: number;
 
 	@Column({
 		type: DataType.TEXT,

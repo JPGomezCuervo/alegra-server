@@ -14,11 +14,11 @@ import { Receipt } from "./Receipt.js";
 })
 export class History extends Model {
 	@Column({
-        primaryKey: true,
+		primaryKey: true,
 		type: DataType.SMALLINT,
-        autoIncrement: true
+		autoIncrement: true,
 	})
-    id!: number;
+	id!: number;
 
 	@ForeignKey(() => Seller)
 	@Column({

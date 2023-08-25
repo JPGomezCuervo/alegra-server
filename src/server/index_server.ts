@@ -7,7 +7,7 @@ const server = express();
 // Morgan config
 server.use(morgan("dev"));
 // start server
-server.use(express.json())
+server.use(express.json());
 server.use("/", routes);
 
 export default server;

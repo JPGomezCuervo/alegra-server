@@ -1,5 +1,5 @@
 export interface SellerBody {
-    id: number
+	id: number;
 	name: string;
 	points: number;
 	victories: number;
