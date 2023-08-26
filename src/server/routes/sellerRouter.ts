@@ -8,6 +8,6 @@ const sellersRouter = Router();
 
 sellersRouter.get("/", getSellers);
 sellersRouter.post("/", postSellers);
-sellersRouter.delete("/", deleteSellers);
+sellersRouter.delete("/:id", deleteSellers);
 
 export default sellersRouter;

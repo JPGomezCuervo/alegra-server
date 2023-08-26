@@ -3,6 +3,7 @@ import { SellerBody } from "../server.types.js";
 import {
 	createSeller,
 	getAllSellers,
+	deleteSeller,
 } from "../controllers/sellersControllers.js";
 
 export const getSellers = async (req: Request, res: Response) => {
@@ -36,5 +37,16 @@ export const postSellers = async (req: Request, res: Response) => {
 };
 
 export const deleteSellers = async (req: Request, res: Response) => {
-	res.status(200).json("deleteSellers");
+	const id: string = req.params.id;
+	try {
+		const response = await deleteSeller(Number(id));
+
+		return res.status(200).json(response);
+	} catch (error) {
+		if (error instanceof Error) {
+			res.status(400).json(error.message);
+		} else {
+			res.status(500).json("Error en el servidor :(");
+		}
+	}
 };
