@@ -35,4 +35,10 @@ export class Seller extends Model {
 		allowNull: false,
 	})
 	currentPoints!: string;
+
+	@Column({
+		type: DataType.BOOLEAN,
+		allowNull: false,
+	})
+	status!: string;
 }
