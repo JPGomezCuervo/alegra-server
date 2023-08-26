@@ -82,3 +82,39 @@ export const findSeller = async (id: number) => {
 	});
 	return response;
 };
+
+export const updateSeller = async (id: number) => {
+	try {
+		const seller = await Seller.findOne({
+			where: {
+				id: id,
+			},
+		});
+
+		if (seller) {
+			try {
+				const currentPoints = seller?.points;
+				const updatedPoints = currentPoints + 1;
+				seller?.update({ points: updatedPoints });
+				seller.save();
+                return {
+                    name: seller.name,
+                    pointsAdded: 1,
+                    totalPoints:updatedPoints
+                }
+			} catch (error) {
+				if (error instanceof Error) {
+					throw new Error(error.message);
+				} else {
+					throw new Error("An unknown error occurred");
+				}
+			}
+		}
+	} catch (error) {
+		if (error instanceof Error) {
+			throw new Error(error.message);
+		} else {
+			throw new Error("An unknown error occurred");
+		}
+	}
+};

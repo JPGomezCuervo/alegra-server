@@ -4,6 +4,7 @@ import {
 	createSeller,
 	getAllSellers,
 	deleteSeller,
+	updateSeller,
 } from "../controllers/sellersControllers.js";
 
 export const getSellers = async (req: Request, res: Response) => {
@@ -40,6 +41,22 @@ export const deleteSellers = async (req: Request, res: Response) => {
 	const id: string = req.params.id;
 	try {
 		const response = await deleteSeller(Number(id));
+
+		return res.status(200).json(response);
+	} catch (error) {
+		if (error instanceof Error) {
+			res.status(400).json(error.message);
+		} else {
+			res.status(500).json("Error en el servidor :(");
+		}
+	}
+};
+
+export const putSellers = async (req: Request, res: Response) => {
+	const id: string = req.params.id;
+
+	try {
+		const response = await updateSeller(Number(id));
 
 		return res.status(200).json(response);
 	} catch (error) {

@@ -3,11 +3,13 @@ import {
 	deleteSellers,
 	getSellers,
 	postSellers,
+	putSellers,
 } from "../handlers/sellersHandlers.js";
 const sellersRouter = Router();
 
 sellersRouter.get("/", getSellers);
 sellersRouter.post("/", postSellers);
 sellersRouter.delete("/:id", deleteSellers);
+sellersRouter.put("/:id", putSellers);
 
 export default sellersRouter;
