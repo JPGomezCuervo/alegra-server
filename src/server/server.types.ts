@@ -27,3 +27,4 @@ export interface ImageResult {
 		thumbnailWidth: number;
 	};
 }
+

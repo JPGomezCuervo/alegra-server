@@ -97,11 +97,11 @@ export const updateSeller = async (id: number) => {
 				const updatedPoints = currentPoints + 1;
 				seller?.update({ points: updatedPoints });
 				seller.save();
-                return {
-                    name: seller.name,
-                    pointsAdded: 1,
-                    totalPoints:updatedPoints
-                }
+				return {
+					name: seller.name,
+					pointsAdded: 1,
+					totalPoints: updatedPoints,
+				};
 			} catch (error) {
 				if (error instanceof Error) {
 					throw new Error(error.message);

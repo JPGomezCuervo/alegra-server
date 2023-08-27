@@ -1,4 +1,11 @@
 export function queryFormatter(str: string) {
+	const regex = /[\s\n\t\r]/g;
+	const stringFormatted = str.replace(regex, "%20");
+
+	return stringFormatted;
+}
+
+export function queryCleaner(str: string) {
 	// remove contiguous spaces and lowerCase the arg
 	const lowerCase = str.toLowerCase();
 	const newArray = [];
@@ -8,8 +15,6 @@ export function queryFormatter(str: string) {
 		newArray.push(letter);
 	}
 	const strCleaned = newArray.join("");
-	const regex = /[\s\n\t\r]/g;
-	const stringFormatted = strCleaned.replace(regex, "%20");
 
-	return stringFormatted;
+	return strCleaned;
 }

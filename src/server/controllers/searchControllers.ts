@@ -1,14 +1,11 @@
 import { BASE_URL } from "../../utils/constants.js";
 import { queryFormatter } from "../../utils/utils.js";
-import { ImageResult } from "../server.types.js";
+import { ImageResult, SellerBody } from "../server.types.js";
+import { getAllSellers } from "./sellersControllers.js";
 import axios from "axios";
 
 export const searchImage = async (queries: string) => {
-	const strTrimmed = queries.trim();
-
-	if (!strTrimmed) throw new Error("La barra de búsqueda no pueda estar vacía");
-
-	const queryFormatted = queryFormatter(strTrimmed);
+	const queryFormatted = queryFormatter(queries);
 
 	const numberOfResults = 10;
 	const searchType = "image";
@@ -41,3 +38,32 @@ export const checkImageAvailability = async (
 
 	return checkedImages.slice(0, desiredImages);
 };
+
+export const assignOwner = async (links:string[], desiredImages:number) => {
+    try {
+        const sellers = await getAllSellers();
+        const selectedSellers = sellers.slice(0, desiredImages);  
+        const assignment = links.map((link, index) => {
+           return {
+                seller: {
+                    id: selectedSellers[index]?.id,
+                    name: selectedSellers[index]?.name
+                },
+
+                link
+            } 
+        })
+
+        return assignment;
+        
+        
+    } catch (error) {
+		if (error instanceof Error) {
+            throw new Error (error.message)
+		} else {
+            throw new Error ("Error en el servidor :(")
+		}
+        
+    }
+
+}
