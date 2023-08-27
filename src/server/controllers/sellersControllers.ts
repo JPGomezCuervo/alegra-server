@@ -86,7 +86,7 @@ export const findSeller = async (id: number) => {
 export const getRank = async () => {
     try {
         const ranking = await Seller.findAll({
-            attributes: ["name","currentPoints"],
+            attributes: ["name","currentPoints", "points","victories"],
             where: {
                 status: true
             }
