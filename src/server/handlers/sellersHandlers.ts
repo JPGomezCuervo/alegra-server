@@ -53,10 +53,10 @@ export const deleteSellers = async (req: Request, res: Response) => {
 };
 
 export const putSellers = async (req: Request, res: Response) => {
-	const id: string = req.params.id;
+	const { id, points} = req.params;
 
 	try {
-		const response = await updateSeller(Number(id));
+		const response = await updateSeller(Number(id), Number(points));
 
 		return res.status(200).json(response);
 	} catch (error) {

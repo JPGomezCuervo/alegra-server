@@ -83,7 +83,26 @@ export const findSeller = async (id: number) => {
 	return response;
 };
 
-export const updateSeller = async (id: number) => {
+export const getRank = async () => {
+    try {
+        const ranking = await Seller.findAll({
+            attributes: ["name","currentPoints"],
+            where: {
+                status: true
+            }
+        })
+        console.log(ranking)
+        return ranking;
+    } catch (error) {
+				if (error instanceof Error) {
+					throw new Error(error.message);
+				} else {
+					throw new Error("An unknown error occurred");
+				}
+        
+    }
+}
+export const updateSeller = async (id: number, points:number) => {
 	try {
 		const seller = await Seller.findOne({
 			where: {
@@ -93,14 +112,20 @@ export const updateSeller = async (id: number) => {
 
 		if (seller) {
 			try {
-				const currentPoints = seller?.points;
-				const updatedPoints = currentPoints + 1;
-				seller?.update({ points: updatedPoints });
-				seller.save();
+				const currentPoints = Number(seller?.currentPoints);
+                const totalPoints = Number(seller?.points);
+                const pointsAdded = points === 1 ? 1 : -1;
+                const updateCurrentPoints = currentPoints + pointsAdded;
+                const updatePoints = totalPoints + pointsAdded;
+				await seller?.update({ points: updatePoints, currentPoints:updateCurrentPoints });
+				await seller.save();
+                const ranking = await getRank();
 				return {
 					name: seller.name,
-					pointsAdded: 1,
-					totalPoints: updatedPoints,
+					pointsAdded,
+					totalPoints: updatePoints,
+                    currentPoints: updateCurrentPoints,
+                    ranking
 				};
 			} catch (error) {
 				if (error instanceof Error) {

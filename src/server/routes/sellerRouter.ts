@@ -10,6 +10,6 @@ const sellersRouter = Router();
 sellersRouter.get("/", getSellers);
 sellersRouter.post("/", postSellers);
 sellersRouter.delete("/:id", deleteSellers);
-sellersRouter.put("/:id", putSellers);
+sellersRouter.put("/:id/:points", putSellers);
 
 export default sellersRouter;
