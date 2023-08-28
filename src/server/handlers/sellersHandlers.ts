@@ -5,6 +5,7 @@ import {
 	getAllSellers,
 	deleteSeller,
 	updateSeller,
+    getAllSellersData
 } from "../controllers/sellersControllers.js";
 
 export const getSellers = async (req: Request, res: Response) => {
@@ -67,3 +68,18 @@ export const putSellers = async (req: Request, res: Response) => {
 		}
 	}
 };
+
+export const getAllSellersInformation = async (req:Request, res:Response) => {
+    try {
+        const response = await getAllSellersData();
+        return res.status(200).json(response); 
+        
+    } catch (error) {
+		if (error instanceof Error) {
+			res.status(400).json(error.message);
+		} else {
+			res.status(500).json("Error en el servidor :(");
+		}
+        
+    }
+}

@@ -114,7 +114,7 @@ export const updateSeller = async (id: number, points:number) => {
 			try {
 				const currentPoints = Number(seller?.currentPoints);
                 const totalPoints = Number(seller?.points);
-                const pointsAdded = points === 1 ? 1 : -1;
+                const pointsAdded = points === 1 ? 3 : -3;
                 const updateCurrentPoints = currentPoints + pointsAdded;
                 const updatePoints = totalPoints + pointsAdded;
 				await seller?.update({ points: updatePoints, currentPoints:updateCurrentPoints });
@@ -142,4 +142,20 @@ export const updateSeller = async (id: number, points:number) => {
 			throw new Error("An unknown error occurred");
 		}
 	}
-};
+}
+
+export const getAllSellersData = async () => {
+
+    try {
+        const sellerInfo = await Seller.findAll(); 
+        return sellerInfo;
+    } catch (error) {
+		if (error instanceof Error) {
+			throw new Error(error.message);
+		} else {
+			throw new Error("An unknown error occurred");
+		}     
+    }
+
+    
+}

@@ -9,7 +9,7 @@ export const searchImage = async (queries: string) => {
 
 	const numberOfResults = 10;
 	const searchType = "image";
-	const link = `${BASE_URL}num=${numberOfResults}&searchType=${searchType}&q=${queryFormatted}%20hd`;
+	const link = `${BASE_URL}num=${numberOfResults}&searchType=${searchType}&imgSize=xlarge&q=${queryFormatted}%20hd`;
 	const response = await axios.get(link);
 
 	const extractImageLinks = response.data.items.map(
